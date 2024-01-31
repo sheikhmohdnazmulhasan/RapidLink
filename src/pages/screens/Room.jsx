@@ -1,17 +1,28 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useSocket } from '../../Providers/SocketProvider';
 import ReactPlayer from 'react-player';
+import peer from '../../service/peer';
 
 const Room = () => {
 
+
+    // Access the socket instance from the SocketProvider
     const socket = useSocket();
+
+    // State to track the remote user's socket ID
     const [remoteSocketId, setRemoteSocketId] = useState(null)
+
+    // State to store the local user's media stream
     const [myStream, setMyStream] = useState()
 
+
+    // Handle user joined event
     const handleUserJoined = useCallback(({ email, id }) => {
         console.log(`Email ${email} Joined Room`)
         setRemoteSocketId(id)
     })
+
+
 
 
     // const handleCallUser = useCallback(() => {
@@ -24,33 +35,43 @@ const Room = () => {
     // }, []);
 
 
-     // Handle calling the user
-     const handleCallUser = useCallback(async () => {
+
+
+    // Handle calling the user and accessing local media stream
+    const handleCallUser = useCallback(async () => {
         try {
             // Get user media stream
             const stream = await navigator.mediaDevices.getUserMedia({
                 audio: true,
                 video: true
             });
+            const offer = await peer.getOffer();
+            socket.emit("user:call", { to: remoteSocketId, offer })
 
             // Set the local stream state
             setMyStream(stream);
         } catch (error) {
             console.error('Error accessing user media:', error);
         }
-    }, []);
+    }, [remoteSocketId, socket]);
+
+    const handlesIncommingCall = useCallback(({ from, offer }) => {
+        console.log(`Incoming Call`,from, offer);
+    }, [])
 
 
-
+    // Set up socket event listener on component mount and clean up on unmount
     useEffect(() => {
         socket.on('user:joined', handleUserJoined)
+        socket.on('incomming:call', handlesIncommingCall)
 
         return () => {
             socket.off('user:joined', handleUserJoined)
+            socket.off('incomming:call', handlesIncommingCall)
         }
 
 
-    }, [socket, handleUserJoined])
+    }, [socket, handleUserJoined, handlesIncommingCall])
 
 
     return (
@@ -61,7 +82,11 @@ const Room = () => {
                 remoteSocketId && <button onClick={handleCallUser}>Call</button>
             }
             {
-                myStream && <ReactPlayer playing  url={myStream }></ReactPlayer>
+                myStream &&
+                <>
+                    <h1>My Stream</h1>
+                    <ReactPlayer playing url={myStream}></ReactPlayer>
+                </>
             }
         </div>
     );
