@@ -8,6 +8,7 @@ import Team from '../pages/Root/Team';
 import About from '../pages/Root/About';
 import Feature from '../pages/Root/Feature';
 import Lobby from '../pages/screens/Lobby';
+import Room from '../pages/screens/Room';
 
 const Router = createBrowserRouter([
     {
@@ -21,7 +22,8 @@ const Router = createBrowserRouter([
             { path: '/team', element: <Team /> },
             { path: '/about', element: <About /> },
             { path: '/features', element: <Feature /> },
-            { path: '/lobby', element: <Lobby /> }
+            { path: '/lobby', element: <Lobby /> },
+            { path: '/room/:roomId', element: <Room /> }
 
         ]
     }
