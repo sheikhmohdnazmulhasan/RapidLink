@@ -9,7 +9,9 @@ import { auth } from "../../firebase.config";
 
 
 const Register = () => {
-    const { signUpUserWithEmailAndPassword, googleSignIn, facebookSignIn } = useContext(AuthContext);
+    const { signUpUserWithEmailAndPassword, googleSignIn, facebookSignIn, user } = useContext(AuthContext);
+
+    console.log(user);
 
     // P23233444##12s
 
@@ -60,6 +62,7 @@ const Register = () => {
 
     }
 
+    // Social media login functionality has been added to the registration page where you can login with Google and Facebook.
     const handleSocialRegister = (media) => {
 
         media.then((user) => {

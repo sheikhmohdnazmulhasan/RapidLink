@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaFacebook, FaGithub } from "react-icons/fa";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
+    const { logInWithEmailAndPassword } = useContext(AuthContext);
+
     const [showPass, setShowPass] = useState(false);
+
+    const handleLogin = (event) => {
+        event.preventDefault();
+
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+
+        console.log(email, password);
+
+    }
 
     return (
         <div>
@@ -47,7 +60,7 @@ const Login = () => {
                                         <FaFacebook />
                                     </button>
                                 </div>
-                                <div className="divide-y divide-gray-200">
+                                <form onSubmit={handleLogin} className="divide-y divide-gray-200">
                                     <div className="relative mb-5">
                                         <input id="email" name="email" type="text" className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Email address" />
                                         <label htmlFor="email" className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Email Address</label>
@@ -59,7 +72,9 @@ const Login = () => {
                                                 <IoIosEyeOff className="absolute  right-0 top-1" />}
                                         </div>
                                         <label htmlFor="password" className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
+
                                     </div>
+                                    <p className="mt-2 font-semibold hover:underline cursor-pointer">Forgot Password</p>
                                     <div className="relative flex gap-4 items-center">
                                         <button className="bg-[#FFE924] text-black mt-5 rounded-md px-2 py-1">Sign In</button>
                                         <div className="flex mt-4">
@@ -67,7 +82,7 @@ const Login = () => {
                                             <Link to={'/register'} className="text-blue-600 text-sm ml-3 font-semibold">Register</Link>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
