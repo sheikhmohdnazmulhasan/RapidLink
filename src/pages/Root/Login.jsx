@@ -30,6 +30,9 @@ const Login = () => {
 
                 toast.error('Incorrect Password', { id: toastId });
                 setShowPassResetText(true);
+
+            } else {
+                toast.error('Something went wrong', { id: toastId });
             }
         });
 
