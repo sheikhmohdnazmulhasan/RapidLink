@@ -1,5 +1,5 @@
 import { useState } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { FaGithub } from "react-icons/fa";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { Link } from "react-router-dom";
@@ -20,13 +20,19 @@ const Register = () => {
 
         const toastId = toast.loading('Working');
 
-        const passRegx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+        const passRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+        if (!passRegex.test(password)) {
+
+            toast.error('Password Must be minimum eight characters, at least one letter, one number and one special character', { id: toastId });
+        } 
 
 
     }
 
     return (
         <div>
+            <Toaster />
             <div className=" px-5 py-6 flex flex-col justify-center sm:py-12">
                 <div className="relative py-3 sm:max-w-xl sm:mx-auto">
                     <div
