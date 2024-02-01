@@ -25,7 +25,12 @@ const Register = () => {
         if (!passRegex.test(password)) {
 
             toast.error('Password Must be minimum eight characters, at least one letter, one number and one special character', { id: toastId });
-        } 
+            return
+
+        } else if (password !== conPassword) {
+
+            toast.error('Password did not match');
+        }
 
 
     }
