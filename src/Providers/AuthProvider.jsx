@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
 
     // All Providers
     const google = new GoogleAuthProvider();
-    const facebook = new FacebookAuthProvider()
+    const facebook = new FacebookAuthProvider();
 
     // Create a password-based account
     function signUpUserWithEmailAndPassword(email, password) {
@@ -36,7 +36,8 @@ const AuthProvider = ({ children }) => {
         setIsLoading(true);
         return signInWithPopup(auth, facebook);
     }
-    // 
+
+    // Send a user a verification email
 
     // sign out a user
     function logOut() {

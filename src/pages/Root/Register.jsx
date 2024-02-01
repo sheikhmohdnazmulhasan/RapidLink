@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { FaGithub } from "react-icons/fa";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 
 const Register = () => {
+    const { signUpUserWithEmailAndPassword } = useContext(AuthContext);
+
+    // P23233444##12s
 
     const [showPass, setShowPass] = useState(false)
     const [showPass2, setShowPass2] = useState(false);
@@ -29,7 +33,15 @@ const Register = () => {
 
         } else if (password !== conPassword) {
 
-            toast.error('Password did not match');
+            toast.error('Password did not match', { id: toastId });
+            return
+
+        } else {
+
+            signUpUserWithEmailAndPassword(email, password).then((user) => {
+                console.log(user.user);
+
+            }).catch(err => toast.error(err.code, { id: toastId }));
         }
 
 
