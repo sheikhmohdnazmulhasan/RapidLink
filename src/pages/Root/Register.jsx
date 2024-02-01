@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 
 
 const Register = () => {
+
+    const [showPass, setShowPass] = useState(false)
+    const [showPass2, setShowPass2] = useState(false)
 
     return (
         <div>
@@ -26,15 +30,25 @@ const Register = () => {
                                         <label htmlFor="email" className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Email Address</label>
                                     </div>
                                     <div className="relative">
-                                        <input id="password" name="password" type="password" className="peer relative placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" />
+                                        <input id="password" name="password" type={showPass ? 'text' : 'password'} className="peer relative placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" />
+                                        <div className="cursor-pointer" onClick={() => setShowPass(!showPass)}>
+                                            {!showPass ? <IoIosEye className="absolute right-0 top-1" /> :
+                                                <IoIosEyeOff className="absolute  right-0 top-1" />}
+                                        </div>
                                         <label htmlFor="password" className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
 
 
                                     </div>
 
                                     <div className="relative">
-                                        <input id="password" name="password" type="password" className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" />
-                                        <label htmlFor="password" className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Confirm Password</label>
+                                        <input id="password" name="password" type={showPass2 ? 'text' : 'password'} className="peer relative placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" />
+                                        <div className="cursor-pointer" onClick={() => setShowPass2(!showPass2)}>
+                                            {!showPass2 ? <IoIosEye className="absolute right-0 top-1" /> :
+                                                <IoIosEyeOff className="absolute  right-0 top-1" />}
+                                        </div>
+                                        <label htmlFor="password" className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
+
+
                                     </div>
                                     <div className="relative">
                                         <button className="bg-[#FFE924] text-black rounded-md px-2 py-1">Register</button>
