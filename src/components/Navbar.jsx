@@ -19,7 +19,6 @@ const Navbar = () => {
         <NavLink to={'/contact'} className={({ isActive }) => isActive ? 'text-[#04111D] font-semibold' : 'text-[#4F4F4F] font-semibold'}>Contact</NavLink>
         <hr />
         <NavLink to={'/login'} className={({ isActive }) => isActive ? 'text-[#04111D] block md:hidden font-bold' : 'text-[#4F4F4F] font-bold md:hidden'}>Sign In</NavLink>
-        <NavLink to={'/register'} className={({ isActive }) => isActive ? 'text-[#04111D] font-bold md:hidden' : 'text-[#4F4F4F] font-bold md:hidden'}>Sign Up</NavLink>
     </>
 
     return (
@@ -57,11 +56,6 @@ const Navbar = () => {
 
                 >
                     Sign In
-                </Link>
-                <Link to={'/register'}
-                    className="hidden transition-all lg:inline-block py-1 px-2 hover:bg-[#FFE900] cursor-pointer border border-[#FFE900] mr-6 text-sm text-gray-900 font-bold rounded-md  duration-200"
-                >
-                    Sign up
                 </Link>
             </nav></Headroom>
 
