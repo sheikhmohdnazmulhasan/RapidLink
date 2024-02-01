@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { FaGithub } from "react-icons/fa";
+import { FaFacebook, FaGithub } from "react-icons/fa";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -9,7 +9,7 @@ import { auth } from "../../firebase.config";
 
 
 const Register = () => {
-    const { signUpUserWithEmailAndPassword } = useContext(AuthContext);
+    const { signUpUserWithEmailAndPassword, googleSignIn, facebookSignIn } = useContext(AuthContext);
 
     // P23233444##12s
 
@@ -53,10 +53,19 @@ const Register = () => {
 
                     }).catch(err => toast.error(err.code, { id: toastId }));
 
-                }).catch(err => toast.error(err.code, { id: toastId }))
+                }).catch(err => toast.error(err.code, { id: toastId }));
 
             }).catch(err => toast.error(err.code, { id: toastId }));
         }
+
+    }
+
+    const handleSocialRegister = (media) => {
+
+        media.then((user) => {
+            console.log(user.user);
+
+        }).catch(err => console.log(err));
 
     }
 
@@ -74,7 +83,7 @@ const Register = () => {
                                 <h1 className="text-2xl font-semibold">Register RapidLink Account</h1>
                             </div>
                             <div className="flex items-center gap-4 mt-5">
-                                <button type="button" className="py-2.5 px-4 text-sm font-semibold rounded text-blue-500 bg-blue-100 hover:bg-blue-200 focus:outline-none">
+                                <button type="button" className="py-2.5 px-4 text-sm font-semibold rounded text-blue-500 bg-blue-100 hover:bg-blue-200 focus:outline-none" onClick={() => handleSocialRegister(googleSignIn())}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" className="inline mr-4" viewBox="0 0 512 512">
                                         <path fill="#fbbd00"
                                             d="M120 256c0-25.367 6.989-49.13 19.131-69.477v-86.308H52.823C18.568 144.703 0 198.922 0 256s18.568 111.297 52.823 155.785h86.308v-86.308C126.989 305.13 120 281.367 120 256z"
@@ -97,8 +106,8 @@ const Register = () => {
                                     </svg>
                                     Sign in with Google
                                 </button>
-                                <button type="button" className="py-2.5 px-4 text-xl font-semibold rounded text-black bg-blue-100 hover:bg-blue-200 focus:outline-none" >
-                                    <FaGithub />
+                                <button type="button" className="py-2.5 px-4 text-xl font-semibold rounded text-black bg-blue-100 hover:bg-blue-200 focus:outline-none" onClick={() => handleSocialRegister(facebookSignIn())}>
+                                    <FaFacebook />
                                 </button>
                             </div>
                             <div className="divide-y divide-gray-200">
