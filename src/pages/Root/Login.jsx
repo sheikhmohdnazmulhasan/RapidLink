@@ -1,26 +1,43 @@
 import { useContext, useState } from "react";
-import { FaFacebook, FaGithub } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
     const { logInWithEmailAndPassword } = useContext(AuthContext);
 
     const [showPass, setShowPass] = useState(false);
+    const [showPassResetText, setShowPassResetText] = useState(false);
 
     const handleLogin = (event) => {
         event.preventDefault();
+        setShowPassResetText(false);
 
         const email = event.target.email.value;
         const password = event.target.password.value;
 
-        console.log(email, password);
+        const toastId = toast.loading('Working');
+
+        logInWithEmailAndPassword(email, password).then(() => {
+
+            toast.success('Login Successful', { id: toastId });
+
+        }).catch(err => {
+
+            if (err.code == 'auth/invalid-credential') {
+
+                toast.error('Incorrect Password', { id: toastId });
+                setShowPassResetText(true);
+            }
+        });
 
     }
 
     return (
         <div>
+            <Toaster />
             <div>
                 <div className=" px-5 py-6 flex flex-col justify-center sm:py-12">
                     <div className="relative py-3 sm:max-w-xl sm:mx-auto">
@@ -74,7 +91,7 @@ const Login = () => {
                                         <label htmlFor="password" className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
 
                                     </div>
-                                    <p className="mt-2 font-semibold hover:underline cursor-pointer">Forgot Password</p>
+                                    {showPassResetText && <p className="mt-2 font-semibold hover:underline cursor-pointer">Forgot Password</p>}
                                     <div className="relative flex gap-4 items-center">
                                         <button className="bg-[#FFE924] text-black mt-5 rounded-md px-2 py-1">Sign In</button>
                                         <div className="flex mt-4">
