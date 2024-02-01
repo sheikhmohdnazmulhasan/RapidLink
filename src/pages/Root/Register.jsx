@@ -4,6 +4,8 @@ import { FaGithub } from "react-icons/fa";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { sendEmailVerification, updateProfile } from "firebase/auth";
+import { auth } from "../../firebase.config";
 
 
 const Register = () => {
@@ -38,12 +40,23 @@ const Register = () => {
 
         } else {
 
-            signUpUserWithEmailAndPassword(email, password).then((user) => {
-                console.log(user.user);
+            signUpUserWithEmailAndPassword(email, password).then(() => {
+
+                updateProfile(auth.currentUser, {
+                    displayName: name
+
+                }).then(() => {
+
+                    sendEmailVerification(auth.currentUser).then(() => {
+
+                        toast.success("A verification email has been sent to your inbox", { id: toastId })
+
+                    }).catch(err => toast.error(err.code, { id: toastId }));
+
+                }).catch(err => toast.error(err.code, { id: toastId }))
 
             }).catch(err => toast.error(err.code, { id: toastId }));
         }
-
 
     }
 

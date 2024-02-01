@@ -37,12 +37,6 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, facebook);
     }
 
-    // Send a user a verification email
-    function sendVerificationEmail() {
-        setIsLoading(true);
-        return sendVerificationEmail(auth.currentUser);
-    }
-
     // sign out a user
     function logOut() {
         setIsLoading(true)
@@ -59,7 +53,7 @@ const AuthProvider = ({ children }) => {
     }, []);
 
 
-    const authentication = { user, isLoading, signUpUserWithEmailAndPassword, logInWithEmailAndPassword, googleSignIn, facebookSignIn, sendVerificationEmail, logOut }
+    const authentication = { user, isLoading, signUpUserWithEmailAndPassword, logInWithEmailAndPassword, googleSignIn, facebookSignIn, logOut }
 
     return <AuthContext.Provider value={authentication}>{children}</AuthContext.Provider>
 };
