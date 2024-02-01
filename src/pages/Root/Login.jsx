@@ -6,7 +6,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
-    const { logInWithEmailAndPassword } = useContext(AuthContext);
+    const { logInWithEmailAndPassword, googleSignIn, facebookSignIn, user } = useContext(AuthContext);
 
     const [showPass, setShowPass] = useState(false);
     const [showPassResetText, setShowPassResetText] = useState(false);
@@ -38,6 +38,16 @@ const Login = () => {
 
     }
 
+    // Social media login functionality has been added to the login page where you can login with Google and Facebook.
+    const handleSocialLogin = (media) => {
+
+        media.then((user) => {
+            console.log(user.user);
+
+        }).catch(err => console.log(err));
+
+    }
+
     return (
         <div>
             <Toaster />
@@ -53,7 +63,7 @@ const Login = () => {
                                     <h1 className="text-2xl font-semibold mb-5">Welcome Back to RapidLink </h1>
                                 </div>
                                 <div className="flex items-center gap-4 mt-5 mb-5">
-                                    <button type="button" className="py-2.5 px-4 text-sm font-semibold rounded text-blue-500 bg-blue-100 hover:bg-blue-200 focus:outline-none">
+                                    <button type="button" className="py-2.5 px-4 text-sm font-semibold rounded text-blue-500 bg-blue-100 hover:bg-blue-200 focus:outline-none" onClick={() => handleSocialLogin(googleSignIn())}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20px" className="inline mr-4" viewBox="0 0 512 512">
                                             <path fill="#fbbd00"
                                                 d="M120 256c0-25.367 6.989-49.13 19.131-69.477v-86.308H52.823C18.568 144.703 0 198.922 0 256s18.568 111.297 52.823 155.785h86.308v-86.308C126.989 305.13 120 281.367 120 256z"
@@ -76,7 +86,7 @@ const Login = () => {
                                         </svg>
                                         Sign in with Google
                                     </button>
-                                    <button type="button" className="py-2.5 px-4 text-xl font-semibold rounded text-black bg-blue-100 hover:bg-blue-200 focus:outline-none" >
+                                    <button type="button" className="py-2.5 px-4 text-xl font-semibold rounded text-black bg-blue-100 hover:bg-blue-200 focus:outline-none" onClick={() => handleSocialLogin(facebookSignIn())}>
                                         <FaFacebook />
                                     </button>
                                 </div>
