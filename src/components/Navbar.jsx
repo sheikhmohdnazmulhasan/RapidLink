@@ -52,12 +52,12 @@ const Navbar = () => {
                 </ul>
 
                 {/* Sign-in and Sign-up buttons */}
-                <a
+                <Link to={'/login'}
                     className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-3 text-sm text-gray-900 font-bold  rounded-xl transition cursor-pointer duration-200"
 
                 >
                     Sign In
-                </a>
+                </Link>
                 <Link to={'/register'}
                     className="hidden transition-all lg:inline-block py-1 px-2 hover:bg-[#FFE900] cursor-pointer border border-[#FFE900] mr-6 text-sm text-gray-900 font-bold rounded-md  duration-200"
                 >

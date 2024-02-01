@@ -9,6 +9,7 @@ import About from '../pages/Root/About';
 import Feature from '../pages/Root/Feature';
 import Lobby from '../pages/screens/Lobby';
 import Room from '../pages/screens/Room';
+import Login from '../pages/Root/Login';
 
 const Router = createBrowserRouter([
     {
@@ -19,6 +20,7 @@ const Router = createBrowserRouter([
             { index: true, element: <Home /> },
             { path: '/contact', element: <Contact /> },
             { path: '/register', element: <Register /> },
+            { path: '/login', element: <Login /> },
             { path: '/team', element: <Team /> },
             { path: '/about', element: <About /> },
             { path: '/features', element: <Feature /> },
