@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { FaGithub } from "react-icons/fa";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { Link } from "react-router-dom";
@@ -7,7 +8,22 @@ import { Link } from "react-router-dom";
 const Register = () => {
 
     const [showPass, setShowPass] = useState(false)
-    const [showPass2, setShowPass2] = useState(false)
+    const [showPass2, setShowPass2] = useState(false);
+
+    const handleRegister = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const conPassword = form.conPassword.value;
+
+        const toastId = toast.loading('Working');
+
+        const passRegx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+
+    }
 
     return (
         <div>
@@ -50,17 +66,17 @@ const Register = () => {
                                 </button>
                             </div>
                             <div className="divide-y divide-gray-200">
-                                <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                                <form onSubmit={handleRegister} className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                                     <div className="relative">
-                                        <input id="email" name="email" type="text" className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Email address" />
+                                        <input id="name" name="name" type="text" className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Email address" required />
                                         <label htmlFor="email" className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Full Name</label>
                                     </div>
                                     <div className="relative">
-                                        <input id="email" name="email" type="text" className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Email address" />
+                                        <input id="email" name="email" type="email" className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Email address" required />
                                         <label htmlFor="email" className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Email Address</label>
                                     </div>
                                     <div className="relative">
-                                        <input id="password" name="password" type={showPass ? 'text' : 'password'} className="peer relative placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" />
+                                        <input id="password" name="password" type={showPass ? 'text' : 'password'} className="peer relative placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" required />
                                         <div className="cursor-pointer" onClick={() => setShowPass(!showPass)}>
                                             {!showPass ? <IoIosEye className="absolute right-0 top-1" /> :
                                                 <IoIosEyeOff className="absolute  right-0 top-1" />}
@@ -71,12 +87,12 @@ const Register = () => {
                                     </div>
 
                                     <div className="relative">
-                                        <input id="password" name="password" type={showPass2 ? 'text' : 'password'} className="peer relative placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" />
+                                        <input id="password2" name="conPassword" type={showPass2 ? 'text' : 'password'} className="peer relative placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" required />
                                         <div className="cursor-pointer" onClick={() => setShowPass2(!showPass2)}>
                                             {!showPass2 ? <IoIosEye className="absolute right-0 top-1" /> :
                                                 <IoIosEyeOff className="absolute  right-0 top-1" />}
                                         </div>
-                                        <label htmlFor="password" className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
+                                        <label htmlFor="password2" className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Confirm Password</label>
 
                                     </div>
                                     <div className="relative flex gap-4 items-center">
@@ -86,7 +102,7 @@ const Register = () => {
                                             <Link to={'/login'} className="text-blue-600 text-sm ml-3 font-semibold">Login</Link>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
