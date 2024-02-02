@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "aos": "^2.3.4",
+    "axios": "^1.6.7",
     "firebase": "^10.7.2",
     "keep-react": "^1.1.2",
     "localforage": "^1.10.0",
@@ -24,6 +25,7 @@
     "react-router-dom": "^6.21.2",
     "socket.io-client": "^4.7.4",
     "sort-by": "^1.2.0",
+    "sweetalert2": "^11.10.4",
     "swiper": "^11.0.5"
   },
   "devDependencies": {

@@ -4,12 +4,55 @@ import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../../firebase.config";
 
 const Login = () => {
     const { logInWithEmailAndPassword, googleSignIn, facebookSignIn, user } = useContext(AuthContext);
 
     const [showPass, setShowPass] = useState(false);
     const [showPassResetText, setShowPassResetText] = useState(false);
+    const [userEmail, setUserEmail] = useState('');
+    const [showModal, setShowModal] = useState(true);
+
+    const handleResetEmail = () => {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
+        if (!emailRegex.test(userEmail)) {
+            Swal.fire({
+                icon: 'error',
+                text: 'Please Provide Valid Email Address'
+            });
+
+            return
+
+        } else {
+            axios.post(`http://localhost:5000/api/email-validation`, { email: userEmail }).then(result => {
+
+                if (!result.data.validity) {
+                    Swal.fire({
+                        icon: 'info',
+                        title: "Account Doesn't Exist!"
+                    });
+
+                    return
+
+                } else {
+                    sendPasswordResetEmail(auth, userEmail).then(() => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Verification email has send to your inbox',
+                        });
+                        
+                    }).catch(err => console.log(err))
+                }
+
+            }).catch(err => console.log(err))
+        }
+    }
+
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -40,17 +83,50 @@ const Login = () => {
 
     // Social media login functionality has been added to the login page where you can login with Google and Facebook.
     const handleSocialLogin = (media) => {
+        const toastId = toast.loading('Working');
 
         media.then((user) => {
-            console.log(user.user);
+            const userData = {
+                name: user.user.displayName,
+                email: user.user.email,
+                role: 'user'
+            }
 
-        }).catch(err => console.log(err));
+            axios.post('http://localhost:5000/api/users', userData).then((result) => {
+
+                if (result.data.success) {
+                    toast.success('Login Successful', { id: toastId })
+                }
+
+            }).catch(err => toast.error(err.code, { id: toastId }));
+
+        }).catch(err => toast.error(err.code, { id: toastId }));
 
     }
 
     return (
         <div>
             <Toaster />
+
+            {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+            {showModal && <dialog id="my_modal_2" className="modal bg-blue-500 rounded">
+                <div className="modal-box p-5 flex flex-col justify-center">
+
+
+                    <input type="email" className="px-2 py-1 bg-gray-300" placeholder="Please Provide Your Email Address" onChange={(event) => setUserEmail(event.target.value)} /> <br />
+                    <button className="bg-gray-300 px-3 py-1 hover:bg-gray-400 transition duration-300" onClick={() => {
+                        handleResetEmail();
+                        setShowModal(!showModal);
+                    }}>Reset</button>
+
+
+                </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button className="bg-gray-300 px-3 py-1 hover:bg-gray-400 w-full transition duration-300">Close</button>
+                </form>
+            </dialog>}
+
             <div>
                 <div className=" px-5 py-6 flex flex-col justify-center sm:py-12">
                     <div className="relative py-3 sm:max-w-xl sm:mx-auto">
@@ -104,7 +180,11 @@ const Login = () => {
                                         <label htmlFor="password" className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
 
                                     </div>
-                                    {showPassResetText && <p className="mt-2 font-semibold hover:underline cursor-pointer">Forgot Password</p>}
+                                    {showPassResetText && <p className="mt-2 font-semibold hover:underline cursor-pointer" onClick={() => {
+                                        setShowModal(true)
+                                        document.getElementById('my_modal_2').showModal();
+
+                                    }}>Forgot Password</p>}
                                     <div className="relative flex gap-4 items-center">
                                         <button className="bg-[#FFE924] text-black mt-5 rounded-md px-2 py-1">Sign In</button>
                                         <div className="flex mt-4">

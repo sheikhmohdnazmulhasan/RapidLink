@@ -10,6 +10,7 @@ import Feature from '../pages/Root/Feature';
 import Lobby from '../pages/screens/Lobby';
 import Room from '../pages/screens/Room';
 import Login from '../pages/Root/Login';
+import Pricing from '../pages/Root/Pricing';
 
 const Router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const Router = createBrowserRouter([
             { path: '/contact', element: <Contact /> },
             { path: '/register', element: <Register /> },
             { path: '/login', element: <Login /> },
+
+            // User Route
+            { path: '/pricing', element: <Pricing /> },
+
             { path: '/team', element: <Team /> },
             { path: '/about', element: <About /> },
             { path: '/features', element: <Feature /> },

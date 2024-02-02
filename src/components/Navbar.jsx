@@ -14,6 +14,7 @@ const Navbar = () => {
         <NavLink to={'/'} className={({ isActive }) => isActive ? 'text-[#04111D] font-semibold' : 'text-[#4F4F4F] font-semibold'}>Home</NavLink>
         <NavLink to={"/features"} className={({ isActive }) => isActive ? 'text-[#04111D] font-semibold' : 'text-[#4F4F4F] font-semibold'}>Features</NavLink>
         <NavLink to={'/team'} className={({ isActive }) => isActive ? 'text-[#04111D] font-semibold' : 'text-[#4F4F4F] font-semibold'}>Team</NavLink>
+        <NavLink to={'/pricing'} className={({ isActive }) => isActive ? 'text-[#04111D] font-semibold' : 'text-[#4F4F4F] font-semibold'}>Pricing</NavLink>
         <NavLink to={'/about'} className={({ isActive }) => isActive ? 'text-[#04111D] font-semibold' : 'text-[#4F4F4F] font-semibold'}>About</NavLink>
 
         <NavLink to={'/contact'} className={({ isActive }) => isActive ? 'text-[#04111D] font-semibold' : 'text-[#4F4F4F] font-semibold'}>Contact</NavLink>

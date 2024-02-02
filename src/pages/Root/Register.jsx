@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { sendEmailVerification, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase.config";
+import axios from "axios";
 
 
 const Register = () => {
     const { signUpUserWithEmailAndPassword, googleSignIn, facebookSignIn, user } = useContext(AuthContext);
 
-    console.log(user);
 
     // P23233444##12s
 
@@ -44,6 +44,7 @@ const Register = () => {
 
             signUpUserWithEmailAndPassword(email, password).then(() => {
 
+
                 updateProfile(auth.currentUser, {
                     displayName: name
 
@@ -51,24 +52,54 @@ const Register = () => {
 
                     sendEmailVerification(auth.currentUser).then(() => {
 
-                        toast.success("A verification email has been sent to your inbox", { id: toastId })
+                        const userData = {
+                            name, email, role: 'user'
+                        }
+
+                        axios.post(`http://localhost:5000/api/users`, userData).then((data) => {
+
+                            if (data.data.success) {
+                                toast.success("A verification email has been sent to your inbox", { id: toastId })
+                            }
+
+                        }).catch(err => toast.error(err.code, { id: toastId }))
+
 
                     }).catch(err => toast.error(err.code, { id: toastId }));
 
                 }).catch(err => toast.error(err.code, { id: toastId }));
 
-            }).catch(err => toast.error(err.code, { id: toastId }));
+            }).catch(err => {
+                if (err.code == 'auth/email-already-in-use') {
+
+                    toast.error('User Already Exist', { id: toastId });
+                }
+            });
         }
 
     }
 
     // Social media login functionality has been added to the registration page where you can login with Google and Facebook.
     const handleSocialRegister = (media) => {
+        const toastId = toast.loading('Working');
 
         media.then((user) => {
-            console.log(user.user);
 
-        }).catch(err => console.log(err));
+            const userData = {
+                name: user.user.displayName,
+                email: user.user.email,
+                role: 'user'
+            }
+
+            axios.post('http://localhost:5000/api/users', userData).then((result) => {
+
+                if (result.data.success) {
+                    toast.success('Login Successful', { id: toastId })
+                }
+
+            }).catch(err => toast.error(err.code, { id: toastId }));
+
+        }).catch(err => toast.error(err.code, { id: toastId }));
 
     }
 

@@ -36,10 +36,10 @@ const Footer = () => {
                 </div>
                 <div className=" p-4 bg-black flex flex-col md:flex-row justify-center md:justify-between w-full px-10">
                     <aside className="flex justify-center">
-                        <p className="hidden md:flex justify-center" data-aos="fade-right">Copyright &copy; RapidLink, 2024 - All right reserved</p>
+                        <p className="hidden md:flex justify-center">Copyright &copy; RapidLink, 2024 - All right reserved</p>
                         <p className="flex justify-center md:hidden">Copyright &copy; RapidLink, 2024 - All right reserved</p>
                     </aside>
-                    <aside className="flex gap-3 text-3xl justify-center mt-3 md:mt-0" data-aos="fade-left">
+                    <aside className="flex gap-3 text-3xl justify-center mt-3 md:mt-0">
                         <a href="https://www.instagram.com/cmc.uae?igsh=MmE1emZqYjRhZHVv" target="_blank" rel="noreferrer"> <FaLinkedin className="cursor-pointer hover:scale-110 transition-all hover:text-[#3EA354]" /></a>
 
                         <a href="https://www.tiktok.com/@cmc_modification_center" target="_blank" rel="noreferrer">
