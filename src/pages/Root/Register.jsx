@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { FaFacebook, FaGithub } from "react-icons/fa";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { sendEmailVerification, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase.config";
@@ -11,7 +11,7 @@ import axios from "axios";
 
 const Register = () => {
     const { signUpUserWithEmailAndPassword, googleSignIn, facebookSignIn, user } = useContext(AuthContext);
-
+    const navigate = useNavigate()
 
     // P23233444##12s
 
@@ -91,20 +91,23 @@ const Register = () => {
                 role: 'user'
             }
 
-            axios.post('http://localhost:5000/api/users', userData).then((result) => {
+            // axios.post('http://localhost:5000/api/users', userData).then((result) => {
 
-                if (result.data.success) {
-                    toast.success('Login Successful', { id: toastId })
-                }
+            //     if (result.data.success) {
+            //         toast.success('Login Successful', { id: toastId })
+            //     }
 
-            }).catch(err => toast.error(err.code, { id: toastId }));
+            // }).catch(err => toast.error(err.code, { id: toastId }));
+
+            toast.success('Login Successful', { id: toastId })
+            navigate('/')
 
         }).catch(err => toast.error(err.code, { id: toastId }));
 
     }
 
     return (
-        <div>
+        <div data-aos='zoom-out'>
             <Toaster />
             <div className=" px-5 py-6 flex flex-col justify-center sm:py-12">
                 <div className="relative py-3 sm:max-w-xl sm:mx-auto">

@@ -11,6 +11,8 @@ import Lobby from '../pages/screens/Lobby';
 import Room from '../pages/screens/Room';
 import Login from '../pages/Root/Login';
 import Pricing from '../pages/Root/Pricing';
+import Payment from '../pages/Payment/Payment';
+import User from '../Protected Route/User';
 
 const Router = createBrowserRouter([
     {
@@ -22,9 +24,10 @@ const Router = createBrowserRouter([
             { path: '/contact', element: <Contact /> },
             { path: '/register', element: <Register /> },
             { path: '/login', element: <Login /> },
+            { path: '/pricing', element: <Pricing /> },
 
             // User Route
-            { path: '/pricing', element: <Pricing /> },
+            { path: '/pay', element: <User><Payment /></User> },
 
             { path: '/team', element: <Team /> },
             { path: '/about', element: <About /> },

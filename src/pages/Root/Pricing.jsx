@@ -1,7 +1,14 @@
+import { useNavigate } from "react-router-dom";
 
 const Pricing = () => {
+    const navigate = useNavigate();
+
+    const handleNavigatePay = (name, price) => {
+        navigate('/pay', { state: { name, price } })
+    }
+
     return (
-        <div>
+        <div data-aos="fade-left">
             <section className="bg-white">
                 <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
                     <div className="relative">
@@ -51,7 +58,7 @@ const Pricing = () => {
                                     <span>Meting Duration: <span className="font-semibold">5 hours</span></span>
                                 </li>
                             </ul>
-                            <a href="#" className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Get started</a>
+                            <p className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center" onClick={() => handleNavigatePay('Starter', '29')}>Get started</p>
                         </div>
 
                         <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow">
@@ -84,7 +91,7 @@ const Pricing = () => {
                                     <span>Meting Duration: <span className="font-semibold">12 hours</span></span>
                                 </li>
                             </ul>
-                            <a href="#" className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Get started</a>
+                            <p className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center" onClick={() => handleNavigatePay('Company', '99')}>Get started</p>
                         </div>
 
                         <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow">
@@ -117,7 +124,7 @@ const Pricing = () => {
                                     <span>Meting Duration: <span className="font-semibold">24 hours</span></span>
                                 </li>
                             </ul>
-                            <a href="#" className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Get started</a>
+                            <p className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center" onClick={() => handleNavigatePay('Enterprise', '499')}>Get started</p>
                         </div>
                     </div>
                 </div>

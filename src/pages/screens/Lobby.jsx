@@ -38,8 +38,6 @@ const Lobby = () => {
     }, [navigate])
 
 
-
-
     // Set up socket event listener on component mount and clean up on unmount
     useEffect(() => {
         socket.on('room:join', handleJoinRoom)

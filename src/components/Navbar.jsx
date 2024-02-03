@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Headroom from "react-headroom";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProvider";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase.config";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user } = useContext(AuthContext);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
+    function xxx() {
+        signOut(auth)
+    }
 
     // NavLinks
     const navLinks = <>
@@ -33,7 +41,7 @@ const Navbar = () => {
                 </a>
 
                 {/* Burger menu for small screens */}
-                <div className="lg:hidden">
+                <div className={`lg:hidden ${user ? '-mr-20' : ''}`}>
                     <button
                         className="navbar-burger flex items-center text-blue-600 p-3"
                         onClick={toggleMenu}
@@ -52,12 +60,14 @@ const Navbar = () => {
                 </ul>
 
                 {/* Sign-in and Sign-up buttons */}
-                <Link to={'/login'}
+                {!user ? <Link to={'/login'}
                     className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-3 text-sm text-gray-900 font-bold  rounded-xl transition cursor-pointer duration-200"
 
                 >
                     Sign In
-                </Link>
+                </Link> :
+                    <img className="w-10 rounded-full" src={user?.photoURL ? user?.photoURL : 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'} alt="" />}
+
             </nav></Headroom>
 
             {/* Mobile menu */}

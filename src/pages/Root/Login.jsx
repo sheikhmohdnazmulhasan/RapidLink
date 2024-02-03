@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
@@ -16,6 +16,7 @@ const Login = () => {
     const [showPassResetText, setShowPassResetText] = useState(false);
     const [userEmail, setUserEmail] = useState('');
     const [showModal, setShowModal] = useState(true);
+    const navigate = useNavigate();
 
     const handleResetEmail = () => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -45,7 +46,7 @@ const Login = () => {
                             icon: 'success',
                             title: 'Verification email has send to your inbox',
                         });
-                        
+
                     }).catch(err => console.log(err))
                 }
 
@@ -92,20 +93,24 @@ const Login = () => {
                 role: 'user'
             }
 
-            axios.post('http://localhost:5000/api/users', userData).then((result) => {
+            // axios.post('http://localhost:5000/api/users', userData).then((result) => {
 
-                if (result.data.success) {
-                    toast.success('Login Successful', { id: toastId })
-                }
+            //     if (result.data.success) {
+            //         toast.success('Login Successful', { id: toastId })
+            //         navigate('/')
+            //     }
 
-            }).catch(err => toast.error(err.code, { id: toastId }));
+            // }).catch(err => toast.error(err.code, { id: toastId }));
 
+            toast.success('Login Successful', { id: toastId })
+            navigate('/')
+            
         }).catch(err => toast.error(err.code, { id: toastId }));
 
     }
 
     return (
-        <div>
+        <div data-aos='zoom-out'>
             <Toaster />
 
             {/* Open the modal using document.getElementById('ID').showModal() method */}
