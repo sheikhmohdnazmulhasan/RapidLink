@@ -2,8 +2,6 @@ import { useContext, useState } from "react";
 import Headroom from "react-headroom";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
-import { signOut } from "firebase/auth";
-import { auth } from "../firebase.config";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,10 +10,6 @@ const Navbar = () => {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-
-    function xxx() {
-        signOut(auth)
-    }
 
     // NavLinks
     const navLinks = <>
@@ -66,7 +60,7 @@ const Navbar = () => {
                 >
                     Sign In
                 </Link> :
-                    <Link to={'/profile'}>  <img className="w-10 rounded-full" src={user?.photoURL ? user?.photoURL : 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'} alt="" /></Link>}
+                    <Link to={'/profile'}>  <img className="w-10 rounded-full" src={user.photoURL ? user.photoURL : 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'} alt="" /></Link>}
 
             </nav></Headroom>
 

@@ -1,16 +1,17 @@
 import { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { FaFacebook, FaGithub } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { sendEmailVerification, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase.config";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 
 const Register = () => {
-    const { signUpUserWithEmailAndPassword, googleSignIn, facebookSignIn, user } = useContext(AuthContext);
+    const { signUpUserWithEmailAndPassword, googleSignIn, facebookSignIn, } = useContext(AuthContext);
     const navigate = useNavigate()
 
     // P23233444##12s
@@ -59,7 +60,17 @@ const Register = () => {
                         axios.post(`http://localhost:5000/api/users`, userData).then((data) => {
 
                             if (data.data.success) {
-                                toast.success("A verification email has been sent to your inbox", { id: toastId })
+                                toast({ id: toastId });
+
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'verification email has been sent',
+                                    text: ''
+                                })
+
+                                setTimeout(() => {
+                                    navigate('/')
+                                }, 300)
                             }
 
                         }).catch(err => toast.error(err.code, { id: toastId }))
@@ -81,7 +92,6 @@ const Register = () => {
 
     // Social media login functionality has been added to the registration page where you can login with Google and Facebook.
     const handleSocialRegister = (media) => {
-        const toastId = toast.loading('Working');
 
         media.then((user) => {
 
@@ -91,18 +101,14 @@ const Register = () => {
                 role: 'user'
             }
 
-            // axios.post('http://localhost:5000/api/users', userData).then((result) => {
+            axios.post('http://localhost:5000/api/users', userData).then(() => {
 
-            //     if (result.data.success) {
-            //         toast.success('Login Successful', { id: toastId })
-            //     }
+                navigate('/')
 
-            // }).catch(err => toast.error(err.code, { id: toastId }));
+            }).catch(err => toast.error(err.code));
 
-            toast.success('Login Successful', { id: toastId })
-            navigate('/')
 
-        }).catch(err => toast.error(err.code, { id: toastId }));
+        }).catch(err => toast.error(err.code));
 
     }
 

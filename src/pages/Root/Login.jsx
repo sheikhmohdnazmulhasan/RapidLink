@@ -10,7 +10,7 @@ import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../firebase.config";
 
 const Login = () => {
-    const { logInWithEmailAndPassword, googleSignIn, facebookSignIn, user } = useContext(AuthContext);
+    const { logInWithEmailAndPassword, googleSignIn, facebookSignIn, } = useContext(AuthContext);
 
     const [showPass, setShowPass] = useState(false);
     const [showPassResetText, setShowPassResetText] = useState(false);
@@ -67,6 +67,7 @@ const Login = () => {
         logInWithEmailAndPassword(email, password).then(() => {
 
             toast.success('Login Successful', { id: toastId });
+            navigate('/')
 
         }).catch(err => {
 
@@ -84,7 +85,6 @@ const Login = () => {
 
     // Social media login functionality has been added to the login page where you can login with Google and Facebook.
     const handleSocialLogin = (media) => {
-        const toastId = toast.loading('Working');
 
         media.then((user) => {
             const userData = {
@@ -93,19 +93,13 @@ const Login = () => {
                 role: 'user'
             }
 
-            // axios.post('http://localhost:5000/api/users', userData).then((result) => {
+            axios.post('http://localhost:5000/api/users', userData).then(() => {
 
-            //     if (result.data.success) {
-            //         toast.success('Login Successful', { id: toastId })
-            //         navigate('/')
-            //     }
+                navigate('/')
 
-            // }).catch(err => toast.error(err.code, { id: toastId }));
+            }).catch(err => toast.error(err.code));
 
-            toast.success('Login Successful', { id: toastId })
-            navigate('/')
-            
-        }).catch(err => toast.error(err.code, { id: toastId }));
+        }).catch(err => toast.error(err.code));
 
     }
 
@@ -193,7 +187,7 @@ const Login = () => {
                                     <div className="relative flex gap-4 items-center">
                                         <button className="bg-[#FFE924] text-black mt-5 rounded-md px-2 py-1">Sign In</button>
                                         <div className="flex mt-4">
-                                            <p className="text-sm ">Don't Have an account?</p>
+                                            <p className="text-sm ">Don&apos;t Have an account?</p>
                                             <Link to={'/register'} className="text-blue-600 text-sm ml-3 font-semibold">Register</Link>
                                         </div>
                                     </div>
