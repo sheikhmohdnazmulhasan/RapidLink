@@ -66,7 +66,7 @@ const Navbar = () => {
                 >
                     Sign In
                 </Link> :
-                    <img className="w-10 rounded-full" src={user?.photoURL ? user?.photoURL : 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'} alt="" />}
+                    <Link to={'/profile'}>  <img className="w-10 rounded-full" src={user?.photoURL ? user?.photoURL : 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'} alt="" /></Link>}
 
             </nav></Headroom>
 
