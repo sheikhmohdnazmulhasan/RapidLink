@@ -6,11 +6,11 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { sendPasswordResetEmail } from "firebase/auth";
+import { sendEmailVerification, sendPasswordResetEmail, signOut } from "firebase/auth";
 import { auth } from "../../firebase.config";
 
 const Login = () => {
-    const { logInWithEmailAndPassword, googleSignIn, facebookSignIn, } = useContext(AuthContext);
+    const { logInWithEmailAndPassword, googleSignIn, facebookSignIn } = useContext(AuthContext);
 
     const [showPass, setShowPass] = useState(false);
     const [showPassResetText, setShowPassResetText] = useState(false);
@@ -44,7 +44,8 @@ const Login = () => {
                     sendPasswordResetEmail(auth, userEmail).then(() => {
                         Swal.fire({
                             icon: 'success',
-                            title: 'Verification email has send to your inbox',
+                            title: 'Reset email has send to your inbox',
+                            text: 'A Password Reset email has been sent to you. If you do not see the email in your inbox, please check your folder'
                         });
 
                     }).catch(err => console.log(err))
@@ -64,10 +65,38 @@ const Login = () => {
 
         const toastId = toast.loading('Working');
 
-        logInWithEmailAndPassword(email, password).then(() => {
+        logInWithEmailAndPassword(email, password).then((user) => {
 
-            toast.success('Login Successful', { id: toastId });
-            navigate('/')
+            toast({ id: toastId });
+
+            if (!user.user.emailVerified) {
+
+                Swal.fire({
+                    title: "Email is not verified!",
+                    text: "Your account email has not been verified. If not verified now, you will not be able to login. Please verify your email.",
+                    icon: "error",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Resend Email"
+
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+                        sendEmailVerification(auth.currentUser).then(() => {
+
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Verification email has been sent',
+                                text: 'A verification email has been sent to you. If you do not see the email in your inbox, please check your folder'
+                            });
+                            
+                            signOut(auth);
+                        })
+                    }
+                });
+
+            }
 
         }).catch(err => {
 

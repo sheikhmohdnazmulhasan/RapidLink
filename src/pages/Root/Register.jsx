@@ -4,7 +4,7 @@ import { FaFacebook } from "react-icons/fa";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { sendEmailVerification, updateProfile } from "firebase/auth";
+import { sendEmailVerification, signOut, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase.config";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -64,9 +64,11 @@ const Register = () => {
 
                                 Swal.fire({
                                     icon: 'success',
-                                    title: 'verification email has been sent',
-                                    text: ''
-                                })
+                                    title: 'Verification email has been sent',
+                                    text: 'A verification email has been sent to you. If you do not see the email in your inbox, please check your folder'
+                                });
+
+                                signOut(auth);
 
                                 setTimeout(() => {
                                     navigate('/')
