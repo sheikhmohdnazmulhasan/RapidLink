@@ -65,7 +65,7 @@ const Register = () => {
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Verification email has been sent',
-                                    text: 'A verification email has been sent to you. If you do not see the email in your inbox, please check your folder'
+                                    text: 'A verification email has been sent to you. If you do not see the email in your inbox, please check your spam folder'
                                 });
 
                                 signOut(auth);

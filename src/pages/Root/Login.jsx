@@ -67,6 +67,10 @@ const Login = () => {
 
         logInWithEmailAndPassword(email, password).then((user) => {
 
+            setTimeout(() => {
+                navigate('/')
+            }, 200)
+
             toast({ id: toastId });
 
             if (!user.user.emailVerified) {
@@ -88,12 +92,13 @@ const Login = () => {
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Verification email has been sent',
-                                text: 'A verification email has been sent to you. If you do not see the email in your inbox, please check your folder'
+                                text: 'A verification email has been sent to you. If you do not see the email in your inbox, please check your spam folder'
                             });
-                            
-                            signOut(auth);
+
+
                         })
                     }
+                    signOut(auth);
                 });
 
             }
