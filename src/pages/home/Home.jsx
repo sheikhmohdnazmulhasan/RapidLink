@@ -4,7 +4,6 @@ import Banner from "./Banner";
 import Collaboration from "./Collaboration";
 import Discover from "./Discover";
 import Engaging from "./Engaging";
-import Flexibility from "./Flexibility";
 import RTGS from "./RTGS";
 import WN from "./WN";
 
