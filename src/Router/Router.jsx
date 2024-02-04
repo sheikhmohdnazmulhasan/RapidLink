@@ -14,6 +14,7 @@ import Pricing from '../pages/Root/Pricing';
 import Payment from '../pages/Payment/Payment';
 import User from '../Protected Route/User';
 import Profile from '../pages/User/Profile';
+import Screen from '../Meeting/Screen';
 
 const Router = createBrowserRouter([
     {
@@ -30,6 +31,7 @@ const Router = createBrowserRouter([
             // User Route
             { path: '/pay', element: <User><Payment /></User> },
             { path: '/profile', element: <User><Profile /></User> },
+            { path: '/rapid-call', element: <Screen /> },
 
             { path: '/team', element: <Team /> },
             { path: '/about', element: <About /> },
