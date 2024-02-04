@@ -1,14 +1,17 @@
 import { MeetingProvider } from "@videosdk.live/react-sdk";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MeetingContainer } from "./meeting/MeetingContainer";
 import { JoiningScreen } from "./components/screens/JoiningScreen";
 import { MeetingAppProvider } from "./MeetingAppContextDef";
 import { LeaveScreen } from "./components/screens/LeaveScreen";
+import { AuthContext } from "../Providers/AuthProvider";
 
 function Screen() {
+  const { user: loggedInUser } = useContext(AuthContext);
   const [token, setToken] = useState("");
+
   const [meetingId, setMeetingId] = useState("");
-  const [participantName, setParticipantName] = useState("");
+  const [participantName, setParticipantName] = useState('');
   const [micOn, setMicOn] = useState(true);
   const [webcamOn, setWebcamOn] = useState(true);
   const [selectedMic, setSelectedMic] = useState({ id: null });
@@ -20,6 +23,7 @@ function Screen() {
   const [selectMicDeviceId, setSelectMicDeviceId] = useState(selectedMic.id);
   const [isMeetingStarted, setMeetingStarted] = useState(false);
   const [isMeetingLeft, setIsMeetingLeft] = useState(false);
+  const { user } = useContext(AuthContext);
 
   const isMobile = window.matchMedia(
     "only screen and (max-width: 768px)"
@@ -47,7 +51,7 @@ function Screen() {
               meetingId,
               micEnabled: micOn,
               webcamEnabled: webcamOn,
-              name: participantName ? participantName : "TestUser",
+              name: `${loggedInUser?.displayName}`,
 
               multiStream: true,
             }}

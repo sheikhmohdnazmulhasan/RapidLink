@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 // import { CheckIcon, ClipboardIcon } from "@heroicons/react/outline";
 import { FaCheck, FaClipboard } from "react-icons/fa";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 export function MeetingDetailsScreen({
   onClickJoin,
@@ -11,6 +13,7 @@ export function MeetingDetailsScreen({
   setVideoTrack,
   onClickStartMeeting,
 }) {
+  const { user } = useContext(AuthContext);
   const [meetingId, setMeetingId] = useState("");
   const [meetingIdError, setMeetingIdError] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
@@ -62,17 +65,17 @@ export function MeetingDetailsScreen({
       {(iscreateMeetingClicked || isJoinMeetingClicked) && (
         <>
           <input
-            value={participantName}
+            value={user.displayName}
             onChange={(e) => setParticipantName(e.target.value)}
-            placeholder="Enter your name"
-            className="px-4 py-3 mt-5 bg-gray-650 rounded-xl text-white w-full text-center"
+            defaultValue={'aaaaa'}
+           
+            className="px-4 py-3 mt-5 !bg-gray-600 rounded-xl !text-white w-full text-center"
           />
 
           {/* <p className="text-xs text-white mt-1 text-center">
             Your name will help everyone identify you in the meeting.
           </p> */}
           <button
-            disabled={participantName.length < 3}
             className={`w-full ${participantName.length < 3 ? "bg-gray-650" : "bg-purple-350"
               }  text-white px-2 py-3 rounded-xl mt-5`}
             onClick={(e) => {

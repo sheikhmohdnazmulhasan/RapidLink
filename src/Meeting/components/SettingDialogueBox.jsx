@@ -154,7 +154,7 @@ export default function SettingDialogueBox({
   };
 
   return (
-    <>
+    <div >
       <Transition appear show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={handleClose}>
           <Transition.Child
@@ -180,7 +180,7 @@ export default function SettingDialogueBox({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded bg-gray-750 p-6 text-center align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full !bg-gray-600 max-w-2xl transform overflow-hidden rounded bg-gray-750 p-6 text-center align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h5"
                     className="text-lg font-medium leading-6 text-white"
@@ -227,7 +227,7 @@ export default function SettingDialogueBox({
                     </div>
 
                     {setting === "audio" ? (
-                      <div ref={boxRef}>
+                      <div ref={boxRef} className="!bg-gray-500">
                         <div className="w-full">
                           <div className="grid container grid-flow-col">
                             <div className="grid grid-cols-12">
@@ -344,7 +344,7 @@ export default function SettingDialogueBox({
                         </div>
                       </div>
                     ) : setting === "video" ? (
-                      <div ref={boxRef}>
+                      <div ref={boxRef} className="">
                         <div className="w-full">
                           <div className="grid container grid-flow-col">
                             <div className="grid grid-cols-12">
@@ -363,7 +363,7 @@ export default function SettingDialogueBox({
                                               {selectedWebcamLabel
                                                 ? selectedWebcamLabel
                                                 : "Select"}
-                                              <ChevronDownIcon
+                                              <FaChevronDown
                                                 className="h-4 w-4"
                                                 style={{
                                                   color: "white",
@@ -490,6 +490,6 @@ export default function SettingDialogueBox({
           setDlgDevices(false);
         }}
       />
-    </>
+    </div>
   );
 }
