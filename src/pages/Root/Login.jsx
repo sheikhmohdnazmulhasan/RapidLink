@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
@@ -17,6 +17,7 @@ const Login = () => {
     const [userEmail, setUserEmail] = useState('');
     const [showModal, setShowModal] = useState(true);
     const navigate = useNavigate();
+    const location = useLocation()
 
     const handleResetEmail = () => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -30,7 +31,7 @@ const Login = () => {
             return
 
         } else {
-            axios.post(`http://localhost:5000/api/email-validation`, { email: userEmail }).then(result => {
+            axios.post(`https://rapid-link-sigma.vercel.app/api/email-validation`, { email: userEmail }).then(result => {
 
                 if (!result.data.validity) {
                     Swal.fire({
@@ -68,7 +69,7 @@ const Login = () => {
         logInWithEmailAndPassword(email, password).then((user) => {
 
             setTimeout(() => {
-                navigate('/')
+                navigate(location.state ? location.state : '/')
             }, 200)
 
             toast({ id: toastId });
@@ -127,9 +128,9 @@ const Login = () => {
                 role: 'user'
             }
 
-            axios.post('http://localhost:5000/api/users', userData).then(() => {
+            axios.post('https://rapid-link-sigma.vercel.app/api/users', userData).then(() => {
 
-                navigate('/')
+            navigate(location.state ? location.state : '/')
 
             }).catch(err => toast.error(err.code));
 

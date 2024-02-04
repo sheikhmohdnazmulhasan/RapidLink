@@ -31,16 +31,14 @@ const Router = createBrowserRouter([
             // User Route
             { path: '/pay', element: <User><Payment /></User> },
             { path: '/profile', element: <User><Profile /></User> },
-            { path: '/rapid-call', element: <Screen /> },
 
             { path: '/team', element: <Team /> },
             { path: '/about', element: <About /> },
             { path: '/features', element: <Feature /> },
-            { path: '/lobby', element: <Lobby /> },
-            { path: '/room/:roomId', element: <Room /> }
 
-        ]
-    }
+        ],
+    },
+    { path: '/rapid-call', element: <User><Screen /></User> },
 ])
 
 export default Router;

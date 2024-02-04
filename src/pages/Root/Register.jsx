@@ -57,7 +57,7 @@ const Register = () => {
                             name, email, role: 'user'
                         }
 
-                        axios.post(`http://localhost:5000/api/users`, userData).then((data) => {
+                        axios.post(`https://rapid-link-sigma.vercel.app/api/users`, userData).then((data) => {
 
                             if (data.data.success) {
                                 toast({ id: toastId });
@@ -103,7 +103,7 @@ const Register = () => {
                 role: 'user'
             }
 
-            axios.post('http://localhost:5000/api/users', userData).then(() => {
+            axios.post('https://rapid-link-sigma.vercel.app/api/users', userData).then(() => {
 
                 navigate('/')
 

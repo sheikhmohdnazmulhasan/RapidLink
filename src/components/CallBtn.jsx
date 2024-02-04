@@ -12,7 +12,7 @@ const CallBtn = () => {
             <div className="flex items-center gap-4">
 
                 {showNeedHelp && <p className='font-semibold text-black'>Join Meeting</p>}
-                <Link onMouseEnter={() => setShowNeedHelp(true)} onMouseLeave={() => setShowNeedHelp(false)}>  <img className="w-12 cursor-pointer hover:scale-110 transition-all" src={WP} alt="" /></Link>
+                <Link to={'/rapid-call'} onMouseEnter={() => setShowNeedHelp(true)} onMouseLeave={() => setShowNeedHelp(false)}>  <img className="w-12 cursor-pointer hover:scale-110 transition-all" src={WP} alt="" /></Link>
 
             </div>
         </div>
