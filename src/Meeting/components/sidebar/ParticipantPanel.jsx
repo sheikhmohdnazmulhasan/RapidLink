@@ -36,7 +36,7 @@ function ParticipantListItem({ participantId, raisedHand }) {
         )}
         <div className="m-1 p-1">{micOn ? <MicOnIcon /> : <MicOffIcon />}</div>
         <div className="m-1 p-1">
-          {webcamOn ? <VideoCamOnIcon /> : <VideoCamOffIcon />}
+          {webcamOn ? <VideoCamOnIcon className="" /> : <VideoCamOffIcon />}
         </div>
       </div>
     </div>
@@ -101,7 +101,7 @@ export function ParticipantPanel({ panelHeight }) {
           const { raisedHand, participantId: peerId } = part[index];
           return (
             <ParticipantListItem
-            key={index}
+              key={index}
               participantId={peerId}
               raisedHand={raisedHand}
             />
