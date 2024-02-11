@@ -1,13 +1,23 @@
 {
     "team": [
+        {
+            "name": "Sheikh Mohammad Nazmul Hasan",
+            "designation": "Team Leader",
+            "email": "nazmulofficial@outlook.com",
+            "website": "https://nazmulwebcraft.netlify.app/",
+            "linkedin": "www.linkedin.com/in/sheikhmohdnazmulhasan",
+            "github": "www.github.com/sheikhmohdnazmulhasan",
+            "description": "Experienced leader with a passion for driving innovation and business growth. Overseeing the overall strategic direction of the company.",
+            "image": "https://i.ibb.co/YQ9gzqN/IMG-0051.jpg"
+          },
       {
         "name": "AK Khan",
-        "designation": "Team Leader",
+        "designation": "Frontend Developer",
         "email": "md.amanatkhan007@gmail.com",
         "website": "https://experimental-portfolio-website.vercel.app/",
         "linkedin": "www.linkedin.com/in/muhammad-amanat-khan",
         "github": "https://github.com/KHaaN007",
-        "description": "Experienced leader with a passion for driving innovation and business growth. Overseeing the overall strategic direction of the company.",
+        "description": "Skilled developer with expertise in creating robust and scalable software. Leading the development team to deliver high-quality solutions.",
         "image": "https://i.ibb.co/wyjFMF7/IMG-20220503-184822.jpg"
       },
       {
@@ -29,16 +39,6 @@
         "github": "https://github.com/Habib1112223",
         "description": "As a tech enthusiast, I lead the company's charge in adopting and implementing cutting-edge solutions. My role centers on shaping the technical vision and strategy, fostering innovation.",
         "image": "https://i.ibb.co/6RQmL58/habib.jpg"
-      },
-      {
-        "name": "Sheikh Mohammad Nazmul Hasan",
-        "designation": "React Developer",
-        "email": "nazmulofficial@outlook.com",
-        "website": "https://nazmulwebcraft.netlify.app/",
-        "linkedin": "www.linkedin.com/in/sheikhmohdnazmulhasan",
-        "github": "www.github.com/sheikhmohdnazmulhasan",
-        "description": "Skilled developer with expertise in creating robust and scalable software. Leading the development team to deliver high-quality solutions.",
-        "image": "https://i.ibb.co/YQ9gzqN/IMG-0051.jpg"
       },
       {
         "name": "Noble Mahmud",
