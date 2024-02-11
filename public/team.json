@@ -1,0 +1,65 @@
+{
+    "team": [
+      {
+        "name": "AK Khan",
+        "designation": "Team Leader",
+        "email": "md.amanatkhan007@gmail.com",
+        "website": "https://experimental-portfolio-website.vercel.app/",
+        "linkedin": "www.linkedin.com/in/muhammad-amanat-khan",
+        "github": "https://github.com/KHaaN007",
+        "description": "Experienced leader with a passion for driving innovation and business growth. Overseeing the overall strategic direction of the company.",
+        "image": "https://i.ibb.co/wyjFMF7/IMG-20220503-184822.jpg"
+      },
+      {
+        "name": "Rakiba Akter",
+        "designation": "MERN Developer",
+        "email": "rakibaakter635@gmail.com",
+        "website": "https://rakiba-akter.netlify.app",
+        "linkedin": "https://www.linkedin.com/in/rakiba-akter",
+        "github": "https://github.com/rakibaakter",
+        "description": "Technology enthusiast with a focus on shaping and implementing cutting-edge solutions. Leading the company's technical vision and strategy.",
+        "image": "https://i.ibb.co/ChG8fJT/myprofile.jpg"
+      },
+      {
+        "name": "Md Habibur Khan",
+        "designation": "Full Stack Developer",
+        "email": "webdevelopment.habib2023@gmail.com",
+        "website": "https://habibur-portfolio.web.app",
+        "linkedin": "https://www.linkedin.com/in/habiburbd2023?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        "github": "https://github.com/Habib1112223",
+        "description": "As a tech enthusiast, I lead the company's charge in adopting and implementing cutting-edge solutions. My role centers on shaping the technical vision and strategy, fostering innovation.",
+        "image": "https://i.ibb.co/6RQmL58/habib.jpg"
+      },
+      {
+        "name": "Sheikh Mohammad Nazmul Hasan",
+        "designation": "React Developer",
+        "email": "nazmulofficial@outlook.com",
+        "website": "https://nazmulwebcraft.netlify.app/",
+        "linkedin": "www.linkedin.com/in/sheikhmohdnazmulhasan",
+        "github": "www.github.com/sheikhmohdnazmulhasan",
+        "description": "Skilled developer with expertise in creating robust and scalable software. Leading the development team to deliver high-quality solutions.",
+        "image": "https://i.ibb.co/YQ9gzqN/IMG-0051.jpg"
+      },
+      {
+        "name": "Noble Mahmud",
+        "designation": "Web Developer",
+        "email": "mahmud.oneis1@gmail.com",
+        "website": "https://portfolio-flax-nu-55.vercel.app/",
+        "linkedin": "linkedin.com/in/mahmud-one-is1",
+        "github": "https://github.com/NobleMahmud",
+        "description": "Strategic marketer with a focus on building brand awareness and driving marketing initiatives. Developing and implementing effective marketing campaigns.",
+        "image": "https://i.ibb.co/564B5B9/IMG-20230224-WA0014.jpg"
+      },
+      {
+        "name": "Oly Ullah",
+        "designation": "Full Stack Developer",
+        "email": "oleeiullah.coder.97@gmail.com",
+        "website": "https://merry-tanuki-ef997e.netlify.app/",
+        "linkedin": "https://www.linkedin.com/in/oly-ullah/",
+        "github": "https://github.com/Oleei-Ullah",
+        "description": "Dedicated HR professional focused on creating a positive work environment. Managing talent acquisition, employee relations, and HR initiatives.",
+        "image": "https://avatars.githubusercontent.com/u/132279816?v=4"
+      }
+    ]
+  }
+  
