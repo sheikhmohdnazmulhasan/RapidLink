@@ -15,9 +15,8 @@ const LeaveScreen = () => {
                                     setIsMeetingLeft(false);
                               }}
                         >
-
+                              Rejoin the Meeting
                         </button>
-
                   </div>
             </div>
       );
