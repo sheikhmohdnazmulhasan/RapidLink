@@ -33,6 +33,10 @@ const WaitingToJoiningScreen = () => {
                                     }}
                                     style={{ height: "100%", width: "100%" }}
                               />
+                               {/* Display the current message */}
+                              <h1 className="text-white text-center font-bold mt-1 text-xl">
+                                    {message.text}
+                              </h1>
 
                         </div>
 
