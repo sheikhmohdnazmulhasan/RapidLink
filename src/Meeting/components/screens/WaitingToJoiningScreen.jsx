@@ -30,6 +30,16 @@ const WaitingToJoiningScreen = () => {
       const isTab = useIsTab();
       const isMobile = useIsMobile();
 
+      // Default options for the Lottie animation
+      const animationDefaultOptions = {
+            loop: true,
+            autoplay: true,
+            animationData: animationData,
+            rendererSettings: {
+                  preserveAspectRatio: "xMidYMid slice",
+            },
+      };
+
       // JSX to render the WaitingToJoinScreen component
       return (
             <div
