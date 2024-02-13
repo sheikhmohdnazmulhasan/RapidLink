@@ -10,14 +10,17 @@ const LeaveScreen = () => {
                   <div className="mt-12">
                         <button
                               className="w-full bg-purple-350 text-white px-16 py-3 rounded-lg text-sm"
-                             
-                              >
+                              // Handle click event to set 'isMeetingLeft' to false
+                              onClick={() => {
+                                    setIsMeetingLeft(false);
+                              }}
+                        >
 
-                              </button>
+                        </button>
 
+                  </div>
             </div>
-            </div>
-                  );
+      );
 };
 
-                  export default LeaveScreen;
+export default LeaveScreen;
