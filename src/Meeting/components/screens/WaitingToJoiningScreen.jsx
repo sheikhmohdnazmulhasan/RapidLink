@@ -9,6 +9,8 @@ const WaitingToJoiningScreen = () => {
       ];
       // State to manage the currently displayed message
       const [message, setMessage] = useState(waitingMessages[0]);
+      // Reference for the interval used to change messages
+      const intervalRef = useRef(null);
 
       // JSX to render the WaitingToJoinScreen component
       return (
