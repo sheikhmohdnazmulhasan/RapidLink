@@ -22,6 +22,17 @@ const WaitingToJoiningScreen = () => {
                                     width: isTab ? 200 : isMobile ? 200 : 250,
                               }}
                         >
+                              {/* Lottie animation component */}
+                              <Lottie
+                                    loop={animationDefaultOptions.loop}
+                                    autoplay={animationDefaultOptions.autoplay}
+                                    animationData={animationDefaultOptions.animationData}
+                                    rendererSettings={{
+                                          preserveAspectRatio:
+                                                animationDefaultOptions.rendererSettings.preserveAspectRatio,
+                                    }}
+                                    style={{ height: "100%", width: "100%" }}
+                              />
 
                         </div>
 
