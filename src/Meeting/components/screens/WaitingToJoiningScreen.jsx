@@ -26,6 +26,10 @@ const WaitingToJoiningScreen = () => {
             };
       }, []);
 
+      // Custom hooks to determine if the device is a tablet or mobile
+      const isTab = useIsTab();
+      const isMobile = useIsMobile();
+
       // JSX to render the WaitingToJoinScreen component
       return (
             <div
