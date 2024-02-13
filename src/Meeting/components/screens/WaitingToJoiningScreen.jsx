@@ -1,6 +1,14 @@
 import React from 'react';
 
+// Define the WaitingToJoinScreen functional component
 const WaitingToJoiningScreen = () => {
+      // Array of messages displayed while waiting
+      const waitingMessages = [
+            { index: 0, text: "Creating a room for you..." },
+            { index: 1, text: "Almost there..." },
+      ];
+      // State to manage the currently displayed message
+      const [message, setMessage] = useState(waitingMessages[0]);
 
       // JSX to render the WaitingToJoinScreen component
       return (
@@ -33,7 +41,7 @@ const WaitingToJoiningScreen = () => {
                                     }}
                                     style={{ height: "100%", width: "100%" }}
                               />
-                               {/* Display the current message */}
+                              {/* Display the current message */}
                               <h1 className="text-white text-center font-bold mt-1 text-xl">
                                     {message.text}
                               </h1>
