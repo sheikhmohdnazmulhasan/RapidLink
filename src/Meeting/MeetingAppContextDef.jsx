@@ -45,6 +45,27 @@ export const MeetingAppProvider = ({ children }) => {
         });
 export default function MeetingAppContextDef() {
   return (
-    <div>MeetingAppContextDef</div>
+    return (
+        <MeetingAppContext.Provider
+          value={{
+            // states
+
+            raisedHandsParticipants,
+
+            sideBarMode,
+            pipMode,
+            // setters
+
+            setRaisedHandsParticipants,
+
+            setSideBarMode,
+            setPipMode,
+            useRaisedHandParticipants,
+          }}
+        >
+          {children}
+        </MeetingAppContext.Provider>
+      );
+    };
   )
 }
