@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 // Define the WaitingToJoinScreen functional component
 const WaitingToJoiningScreen = () => {
@@ -49,7 +49,7 @@ const WaitingToJoiningScreen = () => {
                         alignItems: "center",
                         justifyContent: "center",
                         height: "100vh",
-                        
+
                   }}
             >
                   <div className="flex flex-col">
@@ -75,15 +75,8 @@ const WaitingToJoiningScreen = () => {
                               <h1 className="text-white text-center font-bold mt-1 text-xl">
                                     {message.text}
                               </h1>
-
                         </div>
-
-
                   </div>
-
-
-
-
             </div>
       );
 };
