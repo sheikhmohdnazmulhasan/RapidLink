@@ -58,6 +58,37 @@ export default function MeetingContainer() {
         }
       }
 
+      async function onMeetingJoined() {
+        // console.log("onMeetingJoined");
+        const { changeWebcam, changeMic, muteMic, disableWebcam } =
+          mMeetingRef.current;
+
+        if (webcamEnabled && selectedWebcam.id) {
+          await new Promise((resolve) => {
+            let track;
+            disableWebcam();
+            setTimeout(async () => {
+              track = await getVideoTrack({
+                webcamId: selectedWebcam.id,
+                encoderConfig: "h540p_w960p",
+              });
+              changeWebcam(track);
+              resolve();
+            }, 500);
+          });
+        }
+
+        if (micEnabled && selectedMic.id) {
+          await new Promise((resolve) => {
+            muteMic();
+            setTimeout(() => {
+              changeMic(selectedMic.id);
+              resolve();
+            }, 500);
+          });
+        }
+      }
+
   return (
     <div>MeetingContainer</div>
   )
