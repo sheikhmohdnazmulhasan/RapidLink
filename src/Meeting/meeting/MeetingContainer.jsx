@@ -89,6 +89,29 @@ export default function MeetingContainer() {
         }
       }
 
+      const _handleOnError = (data) => {
+        const { code, message } = data;
+
+        const joiningErrCodes = [
+          4001, 4002, 4003, 4004, 4005, 4006, 4007, 4008, 4009, 4010,
+        ];
+
+        const isJoiningError = joiningErrCodes.findIndex((c) => c === code) !== -1;
+        const isCriticalError = `${code}`.startsWith("500");
+
+        new Audio(
+          isCriticalError
+            ? `https://static.videosdk.live/prebuilt/notification_critical_err.mp3`
+            : `https://static.videosdk.live/prebuilt/notification_err.mp3`
+        ).play();
+
+        setMeetingErrorVisible(true);
+        setMeetingError({
+          code,
+          message: isJoiningError ? "Unable to join meeting!" : message,
+        });
+      };
+
   return (
     <div>MeetingContainer</div>
   )
