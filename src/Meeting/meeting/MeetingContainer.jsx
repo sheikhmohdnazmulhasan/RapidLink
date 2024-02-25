@@ -29,6 +29,20 @@ export default function MeetingContainer() {
     const isLGDesktop = useMediaQuery({ minWidth: 1024, maxWidth: 1439 });
     const isXLDesktop = useMediaQuery({ minWidth: 1440 });
 
+    useEffect(() => {
+        containerRef.current?.offsetHeight &&
+          setContainerHeight(containerRef.current.offsetHeight);
+        containerRef.current?.offsetWidth &&
+          setContainerWidth(containerRef.current.offsetWidth);
+
+        window.addEventListener("resize", ({ target }) => {
+          containerRef.current?.offsetHeight &&
+            setContainerHeight(containerRef.current.offsetHeight);
+          containerRef.current?.offsetWidth &&
+            setContainerWidth(containerRef.current.offsetWidth);
+        });
+      }, [containerRef]);
+
   return (
     <div>MeetingContainer</div>
   )
