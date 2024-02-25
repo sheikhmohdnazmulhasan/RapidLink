@@ -108,8 +108,43 @@ const AudioAnalyser = ({ audioTrack }) => {
       );
     };
 
-export default function SettingDialogueBox() {
-  return (
-    <div>SettingDialogueBox</div>
-  )
-}
+    export default function SettingDialogueBox({
+        open,
+        onClose,
+        popupVideoPlayerRef,
+        webcams,
+        mics,
+        setting,
+        setSetting,
+        setSelectedMic,
+        setSelectedWebcam,
+        changeWebcam,
+        changeMic,
+        videoTrack,
+        audioTrack,
+      }) {
+        const [selectedMicLabel, setSelectedMicLabel] = useState(null);
+        const [selectedWebcamLabel, setSelectedWebcamLabel] = useState(null);
+
+        const [dlgDevices, setDlgDevices] = useState(false);
+
+        const [boxHeight, setBoxHeight] = useState(0);
+        const boxRef = useRef();
+
+        const { width: windowWidth } = useWindowSize();
+
+        useEffect(() => {
+          if (boxRef.current && boxRef.current.offsetHeight !== boxHeight) {
+            setBoxHeight(boxRef.current.offsetHeight);
+          }
+        }, [windowWidth]);
+
+        const handleSetting = (event, n) => {
+          setSetting(n);
+        };
+
+        const handleClose = () => {
+          onClose();
+        };
+
+
