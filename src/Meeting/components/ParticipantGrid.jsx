@@ -31,6 +31,52 @@ const MemoizedParticipant = React.memo(
 
 export default function ParticipantGrid() {
   return (
-    <div>ParticipantGrid</div>
+    <div className="flex flex-col w-full h-full">
+        {Array.from(
+          { length: Math.ceil(participantIds.length / perRow) },
+          (_, i) => {
+            return (
+              <div
+                key={`participant-${i}`}
+                className={`flex flex-1 ${
+                  isPresenting
+                    ? participantIds.length === 1
+                      ? "justify-start items-start"
+                      : "items-center justify-center"
+                    : "items-center justify-center"
+                }`}
+              >
+                {participantIds
+                  .slice(i * perRow, (i + 1) * perRow)
+                  .map((participantId) => {
+                    return (
+                      <div
+                        key={`participant_${participantId}`}
+                        className={`flex flex-1 ${
+                          isPresenting
+                            ? participantIds.length === 1
+                              ? "md:h-48 md:w-44 xl:w-52 xl:h-48 "
+                              : participantIds.length === 2
+                              ? "md:w-44 xl:w-56"
+                              : "md:w-44 xl:w-48"
+                            : "w-full"
+                        } items-center justify-center h-full ${
+                          participantIds.length === 1
+                            ? "md:max-w-7xl 2xl:max-w-[1480px] "
+                            : "md:max-w-lg 2xl:max-w-2xl"
+                        } overflow-clip overflow-hidden  p-1`}
+                      >
+                        <MemoizedParticipant participantId={participantId} />
+                      </div>
+                    );
+                  })}
+              </div>
+            );
+          }
+        )}
+      </div>
+    </div>
+  );
+}
   )
 }
