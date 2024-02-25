@@ -43,6 +43,21 @@ export default function MeetingContainer() {
         });
       }, [containerRef]);
 
+
+      function onEntryResponded(participantId, name) {
+        // console.log(" onEntryResponded", participantId, name);
+        if (mMeetingRef.current?.localParticipant?.id === participantId) {
+          if (name === "allowed") {
+            setLocalParticipantAllowedJoin(true);
+          } else {
+            setLocalParticipantAllowedJoin(false);
+            setTimeout(() => {
+              _handleMeetingLeft();
+            }, 3000);
+          }
+        }
+      }
+
   return (
     <div>MeetingContainer</div>
   )
