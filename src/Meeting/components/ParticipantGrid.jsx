@@ -1,10 +1,15 @@
-const MemoizedParticipant = React.memo(
-    ParticipantView,
-    (prevProps, nextProps) => {
-      return prevProps.participantId === nextProps.participantId;
-    }
-  );
+import React from "react";
+import { useMeetingAppContext } from "../MeetingAppContextDef";
+import { ParticipantView } from "./ParticipantView";
 
+const MemoizedParticipant = React.memo(
+  ParticipantView,
+  (prevProps, nextProps) => {
+    return prevProps.participantId === nextProps.participantId;
+  }
+);
+
+function ParticipantGrid({ participantIds, isPresenting }) {
   const { sideBarMode } = useMeetingAppContext();
   const isMobile = window.matchMedia(
     "only screen and (max-width: 768px)"
@@ -29,9 +34,21 @@ const MemoizedParticipant = React.memo(
       ? 4
       : 4;
 
-export default function ParticipantGrid() {
   return (
-    <div className="flex flex-col w-full h-full">
+    <div
+      className={`flex flex-col md:flex-row flex-grow m-3 items-center justify-center ${
+        participantIds.length < 2 && !sideBarMode && !isPresenting
+          ? "md:px-16 md:py-2"
+          : participantIds.length < 3 && !sideBarMode && !isPresenting
+          ? "md:px-16 md:py-8"
+          : participantIds.length < 4 && !sideBarMode && !isPresenting
+          ? "md:px-16 md:py-4"
+          : participantIds.length > 4 && !sideBarMode && !isPresenting
+          ? "md:px-14"
+          : "md:px-0"
+      }`}
+    >
+      <div className="flex flex-col w-full h-full">
         {Array.from(
           { length: Math.ceil(participantIds.length / perRow) },
           (_, i) => {
@@ -78,5 +95,14 @@ export default function ParticipantGrid() {
     </div>
   );
 }
-  )
-}
+
+export const MemoizedParticipantGrid = React.memo(
+  ParticipantGrid,
+  (prevProps, nextProps) => {
+    return (
+      JSON.stringify(prevProps.participantIds) ===
+        JSON.stringify(nextProps.participantIds) &&
+      prevProps.isPresenting === nextProps.isPresenting
+    );
+  }
+);
